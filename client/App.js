@@ -36,6 +36,11 @@ class App extends Component {
         this.setState({messages});
         socket.emit('message', message);
     }
+    //implement new chat user method
+    handleUserSubmit(name) {
+        this.setState({name});
+        socket.emit('join', name);
+    }
     render() {
         return this.state.name !== '' ? this.renderLayout() : this.renderUserForm();
     }
