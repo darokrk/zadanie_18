@@ -16,6 +16,11 @@ class App extends Component {
         super(props);
         this.state = {users: [], messages: [], text: '', name: ''};
     }
+    //DOM loaded, functions that listen for messages like update and message
+    componentDidMount() {
+        socket.on('message', message => this.messageReceive(message));
+        socket.on('update', ({users}) => this.chatUpdate(users));
+    }
     render() {
         return this.state.name !== '' ? this.renderLayout() : this.renderUserForm();
     }
