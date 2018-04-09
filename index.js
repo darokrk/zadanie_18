@@ -26,6 +26,13 @@ io.on('connection', function(socket) {
             users: userService.getAllUsers()
         });
     });
+    //Support for breaking the connection with the server
+    socket.on('disconnect', () => {
+        userService.removeUser(socket.id);
+        socket.broadcast.emit('update', {
+            users: userService.getAllUsers()
+        });
+    });
 });
 
 server.listen(3000, function() {
