@@ -26,6 +26,10 @@ class App extends Component {
         const messages = [message, ...this.state.messages];
         this.setState({messages});
     }
+    //server will always send an array with the current list of users
+    chatUpdate(users) {
+        this.setState({users});
+    }
     render() {
         return this.state.name !== '' ? this.renderLayout() : this.renderUserForm();
     }
