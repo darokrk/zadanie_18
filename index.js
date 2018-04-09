@@ -33,6 +33,14 @@ io.on('connection', function(socket) {
             users: userService.getAllUsers()
         });
     });
+    //Support for sending messages to chat users
+    socket.on('message', function(message) {
+        const {name} = userService.getUserById(socket.id);
+        socket.broadcast.emit('message', {
+            text: message.text,
+            from: name
+        });
+    });
 });
 
 server.listen(3000, function() {
