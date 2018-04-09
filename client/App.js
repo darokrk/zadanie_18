@@ -30,6 +30,12 @@ class App extends Component {
     chatUpdate(users) {
         this.setState({users});
     }
+    //implement send message method to server
+    handleMessageSubmit(message) {
+        const messages = [message, ...this.state.messages];
+        this.setState({messages});
+        socket.emit('message', message);
+    }
     render() {
         return this.state.name !== '' ? this.renderLayout() : this.renderUserForm();
     }
