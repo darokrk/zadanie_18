@@ -15,7 +15,7 @@ var plugins = [
 
 console.log('NODE_ENV:', env);
 
-if (env === 'development') {
+if (env === 'production') {
     plugins.push(
         new webpack.optimize.UglifyJsPlugin(),
         new OptimizeJsPlugin({
